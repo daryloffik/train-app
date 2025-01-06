@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { Link, Stack } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import Button from '@/components/Button';
 
@@ -17,10 +18,12 @@ export default function Index() {
       ></Image>
       <View style={styles.button}>
       <Button theme="primary" label =""   >
-          <Link href="/" style={styles.text}>
+          <Link href="/home" style={styles.text}>
                     <Text>Go to home screen!</Text>
                   </Link>
         </Button>
+        <Ionicons name="home-sharp" size={24} color="black" />
+
       </View>
        
     </View>
