@@ -36,6 +36,9 @@ export default function TabLayout() {
         ),
        }} />
       <Tabs.Screen name="playlist" options={{ title: 'Playlist',
+      header: () => ( <View style={{ backgroundColor: '#ffffff', padding: 20, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center' }}>Playlist</Text>
+      </View> ),
         tabBarIcon: ({ color, focused }) => (
           <Ionicons name={focused ? 'musical-notes-outline' : 'musical-notes'} color={color} size={24}/>
         ),

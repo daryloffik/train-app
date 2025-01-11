@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import { useState } from 'react';
@@ -15,7 +15,15 @@ import { useState } from 'react';
 requestStoragePermission();
 */
 
-
+type SongProps = ({actualSong : object})
+const Song = ({actualSong} : SongProps) => (
+  <View>
+  <Text>
+  g,bcjgc
+  </Text>
+</View>
+)
+ 
 export default function Home()
 {
     const [songs, setSongs] = useState<object[]>([]);
@@ -55,10 +63,25 @@ requestPermission();
       
     return (
         <View>
+           <Text style={style.header}>
+            Vos chansons 
+           </Text>
+           <View>
            <Text>
            {songs.length > 0 ? `Home Miaou! ${songs[0].albumId}` : 'Chargement des chansons...'}
            </Text>
         </View>
+        </View>
+        
     )
 
 }
+
+const style = StyleSheet.create({
+  header:{
+     fontSize: 25,
+    fontWeight: 'bold', 
+    textAlign: 'center',
+    margin: 20
+  }
+})

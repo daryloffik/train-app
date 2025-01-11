@@ -22,7 +22,6 @@ export default function Index() {
                     <Text>Go to home screen!</Text>
                   </Link>
         </Button>
-        <Ionicons name="home-sharp" size={24} color="black" />
 
       </View>
        
