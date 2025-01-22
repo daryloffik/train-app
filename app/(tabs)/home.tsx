@@ -1,7 +1,12 @@
-import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList, ScrollView } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import { useState } from 'react';
+
+import { parseFile } from 'music-metadata';
+import { inspect } from 'util';
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 
 /*async function requestStoragePermission() {
   const { status } = await MediaLibrary.requestPermissionsAsync(); // Expo 41+
@@ -16,10 +21,13 @@ requestStoragePermission();
 */
 
 type SongProps = ({actualSong : object})
+
 const Song = ({actualSong} : SongProps) => (
-  <View>
+  <View  style={style.song}>
+          <Ionicons name='musical-note' color={'#706385'} size={24}/>
+
   <Text>
-  g,bcjgc
+    { actualSong.filename}
   </Text>
 </View>
 )
@@ -50,11 +58,12 @@ async function getDownloads() {
       mediaType: MediaLibrary.MediaType.audio, // Pour inclure tous les types de fichiers
     });
   
-    console.log('Fichiers trouvés :', assets.assets[2]);
+    console.log('Fichiers trouvés :', assets.assets[16]);
     setSongs(assets.assets);
+    //getCovers(assets.assets[16].uri)
 
   }
-  
+
   getDownloads();
   
 
@@ -70,6 +79,13 @@ requestPermission();
            <Text>
            {songs.length > 0 ? `Home Miaou! ${songs[0].albumId}` : 'Chargement des chansons...'}
            </Text>
+          
+           <FlatList
+        data={songs}
+        renderItem={({item}) => <Song actualSong={item} />}
+        keyExtractor={item => item.id}
+      />
+
         </View>
         </View>
         
@@ -83,5 +99,16 @@ const style = StyleSheet.create({
     fontWeight: 'bold', 
     textAlign: 'center',
     margin: 20
+  },
+  song: {
+    shadowOffset: {width:2,height: 4},
+    borderRadius: 10,
+    display: 'flex',
+    
+    justifyContent: 'center',
+    height:60,
+    backgroundColor: '#faf9f5',
+    margin: 10,
+    
   }
 })
